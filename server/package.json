@@ -1,0 +1,28 @@
+{
+  "name": "graphql-poc-server",
+  "version": "1.0.0",
+  "description": "GraphQL server with Node.js, GraphQL Yoga, TypeScript, and QuestDB",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "graphql-yoga": "^5.1.1",
+    "graphql": "^16.8.1",
+    "@questdb/nodejs-client": "^3.0.0",
+    "dotenv": "^16.4.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/node": "^20.11.16",
+    "ts-node-dev": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "",
+  "license": "MIT"
+}
