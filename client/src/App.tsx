@@ -1,5 +1,7 @@
 import { Layout, Typography, Space } from 'antd'
 import { DatabaseOutlined, ApiOutlined } from '@ant-design/icons'
+import { ConnectionStatus } from './components/ConnectionStatus'
+import { DatabaseStats } from './components/DatabaseStats'
 import './App.css'
 
 const { Header, Content, Footer } = Layout
@@ -21,41 +23,52 @@ function App() {
         </Title>
       </Header>
       
-      <Content style={{ padding: '50px', background: '#f0f2f5' }}>
+      <Content style={{ padding: '24px 50px', background: '#f0f2f5' }}>
         <div style={{ 
-          background: 'white', 
-          padding: '24px', 
-          borderRadius: '8px',
-          maxWidth: '800px',
+          maxWidth: '1200px',
           margin: '0 auto'
         }}>
-          <Title level={1}>
-            <Space>
-              <DatabaseOutlined />
-              GraphQL + QuestDB POC
-            </Space>
-          </Title>
-          
-          <Text>
-            Welcome to the GraphQL proof-of-concept application built with:
-          </Text>
-          
-          <ul style={{ marginTop: '16px' }}>
-            <li><strong>Frontend:</strong> React + TypeScript + Ant Design</li>
-            <li><strong>Backend:</strong> Node.js + GraphQL Yoga + TypeScript</li>
-            <li><strong>Database:</strong> QuestDB (Time-series database)</li>
-            <li><strong>GraphQL Client:</strong> Apollo Client</li>
-          </ul>
-          
           <div style={{ 
-            marginTop: '32px', 
-            padding: '16px', 
-            background: '#f6ffed', 
-            border: '1px solid #b7eb8f',
-            borderRadius: '6px'
+            background: 'white', 
+            padding: '24px', 
+            borderRadius: '8px',
+            marginBottom: '24px'
           }}>
-            <Text strong>Status: </Text>
-            <Text type="success">Client initialized successfully! 🎉</Text>
+            <Title level={1}>
+              <Space>
+                <DatabaseOutlined />
+                GraphQL + QuestDB POC
+              </Space>
+            </Title>
+            
+            <Text>
+              Welcome to the GraphQL proof-of-concept application built with:
+            </Text>
+            
+            <ul style={{ marginTop: '16px', marginBottom: '24px' }}>
+              <li><strong>Frontend:</strong> React + TypeScript + Ant Design</li>
+              <li><strong>Backend:</strong> Node.js + GraphQL Yoga + TypeScript</li>
+              <li><strong>Database:</strong> QuestDB (Time-series database)</li>
+              <li><strong>GraphQL Client:</strong> Apollo Client</li>
+            </ul>
+          </div>
+
+          {/* Connection Status */}
+          <ConnectionStatus />
+
+          {/* Database Statistics */}
+          <DatabaseStats />
+
+          <div style={{ 
+            background: 'white', 
+            padding: '24px', 
+            borderRadius: '8px',
+            textAlign: 'center'
+          }}>
+            <Text type="secondary">
+              This application demonstrates GraphQL queries and mutations with real-time data from QuestDB.
+              The connection status and database statistics update automatically.
+            </Text>
           </div>
         </div>
       </Content>
