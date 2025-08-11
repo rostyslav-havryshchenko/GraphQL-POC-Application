@@ -68,6 +68,17 @@ QuestDB will be available at:
 - PostgreSQL wire: localhost:8812
 - InfluxDB line protocol: localhost:9003
 
+### Database Setup
+After QuestDB is running, initialize the database:
+```bash
+npm run setup-db
+```
+
+This will:
+- Create necessary tables (users, posts, comments)
+- Seed the database with sample data
+- Verify the connection is working
+
 ## API
 
 ### Basic Queries
