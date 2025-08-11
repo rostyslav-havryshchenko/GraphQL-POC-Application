@@ -79,20 +79,108 @@ This will:
 - Seed the database with sample data
 - Verify the connection is working
 
-## API
+## GraphQL API
 
-### Basic Queries
+### Sample Queries
+
+#### Get Basic Info
 ```graphql
 query {
   hello
   version
+  stats {
+    users
+    posts
+    comments
+  }
 }
 ```
 
-### Basic Mutations
+#### Get All Users
+```graphql
+query {
+  users {
+    id
+    name
+    email
+    created_at
+  }
+}
+```
+
+#### Get User with Posts
+```graphql
+query {
+  user(id: 1) {
+    name
+    email
+    posts {
+      title
+      content
+      created_at
+    }
+  }
+}
+```
+
+#### Get Posts with Authors and Comments
+```graphql
+query {
+  posts {
+    title
+    content
+    author {
+      name
+      email
+    }
+    comments {
+      content
+      author {
+        name
+      }
+    }
+  }
+}
+```
+
+### Sample Mutations
+
+#### Create User
 ```graphql
 mutation {
-  echo(message: "Hello World")
+  createUser(input: {
+    name: "Alice Johnson"
+    email: "alice@example.com"
+  })
+}
+```
+
+#### Create Post
+```graphql
+mutation {
+  createPost(input: {
+    title: "My First Post"
+    content: "This is the content of my first post..."
+    authorId: 1
+  })
+}
+```
+
+#### Create Comment
+```graphql
+mutation {
+  createComment(input: {
+    content: "Great post!"
+    postId: 1
+    authorId: 2
+  })
+}
+```
+
+#### Seed Database
+```graphql
+mutation {
+  seedDatabase
 }
 ```
 

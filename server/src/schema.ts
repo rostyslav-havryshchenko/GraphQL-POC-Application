@@ -1,29 +1,110 @@
 import { createSchema } from 'graphql-yoga'
+import { resolvers } from './resolvers'
 
 // Define GraphQL type definitions
 const typeDefs = `
-  type Query {
-    hello: String
-    version: String
+  # Basic scalar types
+  scalar DateTime
+
+  # Database statistics
+  type Stats {
+    users: Int!
+    posts: Int!
+    comments: Int!
   }
 
+  # User type
+  type User {
+    id: Int!
+    name: String!
+    email: String!
+    created_at: String!
+    posts: [Post!]!
+  }
+
+  # Post type
+  type Post {
+    id: Int!
+    title: String!
+    content: String!
+    author_id: Int!
+    created_at: String!
+    updated_at: String!
+    author: User
+    comments: [Comment!]!
+  }
+
+  # Comment type
+  type Comment {
+    id: Int!
+    content: String!
+    post_id: Int!
+    author_id: Int!
+    created_at: String!
+    author: User
+  }
+
+  # Input types for mutations
+  input CreateUserInput {
+    name: String!
+    email: String!
+  }
+
+  input CreatePostInput {
+    title: String!
+    content: String!
+    authorId: Int!
+  }
+
+  input CreateCommentInput {
+    content: String!
+    postId: Int!
+    authorId: Int!
+  }
+
+  input UpdatePostInput {
+    id: Int!
+    title: String
+    content: String
+  }
+
+  # Root query type
+  type Query {
+    # Basic info
+    hello: String!
+    version: String!
+    stats: Stats!
+
+    # User queries
+    users: [User!]!
+    user(id: Int!): User
+
+    # Post queries
+    posts: [Post!]!
+    postsByAuthor(authorId: Int!): [Post!]!
+
+    # Comment queries
+    commentsByPost(postId: Int!): [Comment!]!
+  }
+
+  # Root mutation type
   type Mutation {
-    echo(message: String!): String
+    # Basic mutations
+    echo(message: String!): String!
+
+    # User mutations
+    createUser(input: CreateUserInput!): String!
+
+    # Post mutations
+    createPost(input: CreatePostInput!): String!
+
+    # Comment mutations
+    createComment(input: CreateCommentInput!): String!
+
+    # Utility mutations
+    seedDatabase: String!
   }
 `
-
-// Define resolvers
-const resolvers = {
-  Query: {
-    hello: () => 'Hello from GraphQL Yoga!',
-    version: () => '1.0.0',
-  },
-  Mutation: {
-    echo: (_parent: any, args: { message: string }) => {
-      return `Echo: ${args.message}`
-    },
-  },
-}
 
 // Create and export schema
 export const schema = createSchema({
