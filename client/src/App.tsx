@@ -2,6 +2,7 @@ import { Layout, Typography, Space } from 'antd'
 import { DatabaseOutlined, ApiOutlined } from '@ant-design/icons'
 import { ConnectionStatus } from './components/ConnectionStatus'
 import { DatabaseStats } from './components/DatabaseStats'
+import { GraphQLPlayground } from './components/GraphQLPlayground'
 import './App.css'
 
 const { Header, Content, Footer } = Layout
@@ -25,7 +26,7 @@ function App() {
       
       <Content style={{ padding: '24px 50px', background: '#f0f2f5' }}>
         <div style={{ 
-          maxWidth: '1200px',
+          maxWidth: '1400px',
           margin: '0 auto'
         }}>
           <div style={{ 
@@ -59,6 +60,9 @@ function App() {
           {/* Database Statistics */}
           <DatabaseStats />
 
+          {/* GraphQL Operations Playground */}
+          <GraphQLPlayground />
+
           <div style={{ 
             background: 'white', 
             padding: '24px', 
@@ -67,7 +71,7 @@ function App() {
           }}>
             <Text type="secondary">
               This application demonstrates GraphQL queries and mutations with real-time data from QuestDB.
-              The connection status and database statistics update automatically.
+              Try creating users, posts, and comments to see the GraphQL operations in action!
             </Text>
           </div>
         </div>
