@@ -1,0 +1,91 @@
+/* GraphQL POC App Styles */
+
+#root {
+  width: 100%;
+  height: 100vh;
+}
+
+/* Custom styles for better integration with Ant Design */
+.ant-layout {
+  background: #f0f2f5;
+}
+
+.ant-layout-header {
+  padding: 0 24px;
+}
+
+.ant-layout-content {
+  background: #f0f2f5;
+}
+
+/* Custom card styles */
+.content-card {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03), 0 1px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+}
+
+/* Status indicator styles */
+.status-success {
+  background: #f6ffed;
+  border: 1px solid #b7eb8f;
+  border-radius: 6px;
+  padding: 16px;
+  margin-top: 24px;
+}
+
+.status-warning {
+  background: #fffbe6;
+  border: 1px solid #ffe58f;
+  border-radius: 6px;
+  padding: 16px;
+  margin-top: 24px;
+}
+
+.status-error {
+  background: #fff2f0;
+  border: 1px solid #ffccc7;
+  border-radius: 6px;
+  padding: 16px;
+  margin-top: 24px;
+}
+
+/* GraphQL operation cards */
+.operation-card {
+  margin-bottom: 16px;
+  border-left: 4px solid #1890ff;
+}
+
+.operation-card.mutation {
+  border-left-color: #52c41a;
+}
+
+.operation-card.query {
+  border-left-color: #1890ff;
+}
+
+/* Loading and error states */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.error-container {
+  text-align: center;
+  padding: 40px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .ant-layout-content {
+    padding: 16px;
+  }
+  
+  .content-card {
+    padding: 16px;
+    margin: 0;
+  }
+}
