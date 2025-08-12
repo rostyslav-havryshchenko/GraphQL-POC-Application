@@ -7,8 +7,6 @@ import { CreatePostForm } from './CreatePostForm'
 import { CreateCommentForm } from './CreateCommentForm'
 import type { User, Post } from '../types/graphql'
 
-const { TabPane } = Tabs
-
 export const GraphQLPlayground = () => {
   const handleViewUser = (user: User) => {
     console.log('View user details:', user)
@@ -30,48 +28,53 @@ export const GraphQLPlayground = () => {
       }
       style={{ marginBottom: 24 }}
     >
-      <Tabs defaultActiveKey="queries" type="card">
-        <TabPane 
-          tab={
-            <span>
-              <UserOutlined />
-              Query Data
-            </span>
-          } 
-          key="queries"
-        >
-          <Row gutter={[16, 16]}>
-            <Col xs={24} lg={12}>
-              <UsersList onViewUser={handleViewUser} />
-            </Col>
-            <Col xs={24} lg={12}>
-              <PostsList onViewPost={handleViewPost} />
-            </Col>
-          </Row>
-        </TabPane>
-        
-        <TabPane 
-          tab={
-            <span>
-              <PlusOutlined />
-              Create Data
-            </span>
-          } 
-          key="mutations"
-        >
-          <Row gutter={[16, 16]}>
-            <Col xs={24} lg={8}>
-              <CreateUserForm />
-            </Col>
-            <Col xs={24} lg={8}>
-              <CreatePostForm />
-            </Col>
-            <Col xs={24} lg={8}>
-              <CreateCommentForm />
-            </Col>
-          </Row>
-        </TabPane>
-      </Tabs>
+      <Tabs 
+        defaultActiveKey="queries" 
+        type="card"
+        items={[
+          {
+            key: 'queries',
+            label: (
+              <span>
+                <UserOutlined />
+                Query Data
+              </span>
+            ),
+            children: (
+              <Row gutter={[16, 16]}>
+                <Col xs={24} lg={12}>
+                  <UsersList onViewUser={handleViewUser} />
+                </Col>
+                <Col xs={24} lg={12}>
+                  <PostsList onViewPost={handleViewPost} />
+                </Col>
+              </Row>
+            )
+          },
+          {
+            key: 'mutations',
+            label: (
+              <span>
+                <PlusOutlined />
+                Create Data
+              </span>
+            ),
+            children: (
+              <Row gutter={[16, 16]}>
+                <Col xs={24} lg={8}>
+                  <CreateUserForm />
+                </Col>
+                <Col xs={24} lg={8}>
+                  <CreatePostForm />
+                </Col>
+                <Col xs={24} lg={8}>
+                  <CreateCommentForm />
+                </Col>
+              </Row>
+            )
+          }
+        ]}
+      />
     </Card>
   )
 }

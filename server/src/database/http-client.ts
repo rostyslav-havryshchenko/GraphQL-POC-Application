@@ -33,7 +33,7 @@ class QuestDBHttpClient {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`)
       }
 
-      const result = await response.json()
+      const result = await response.json() as QueryResult & { error?: string }
       
       if (result.error) {
         throw new Error(result.error)

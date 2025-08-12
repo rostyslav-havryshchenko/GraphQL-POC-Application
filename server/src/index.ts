@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 4000
 const yoga = createYoga({
   schema,
   cors: {
-    origin: ['http://localhost:3000'], // React app will run on port 3000
+    origin: ['http://localhost:3000', 'http://localhost:5173'], // React app and Vite dev server
     credentials: true,
   },
   logging: {
@@ -59,7 +59,7 @@ async function startServer() {
     server.listen(PORT, () => {
       console.log(`🚀 GraphQL server running on http://localhost:${PORT}/graphql`)
       console.log(`📊 GraphQL playground available at http://localhost:${PORT}/graphql`)
-      console.log(`🗃️ QuestDB web console: http://localhost:9009`)
+      console.log(`🗃️ QuestDB web console: http://localhost:9000`)
     })
   } catch (error) {
     console.error('❌ Failed to start server:', error)

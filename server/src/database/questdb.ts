@@ -5,7 +5,7 @@ config()
 
 // QuestDB connection configuration
 const QUESTDB_HOST = process.env.QUESTDB_HOST || 'localhost'
-const QUESTDB_PORT = parseInt(process.env.QUESTDB_PORT || '9009')
+const QUESTDB_PORT = parseInt(process.env.QUESTDB_ILP_PORT || '9003')
 
 // Types for our POC data
 export interface User {
@@ -37,7 +37,8 @@ class QuestDBClient {
 
   async connect(): Promise<void> {
     try {
-      this.sender = Sender.fromConfig(`http::addr=${QUESTDB_HOST}:${QUESTDB_PORT};`)
+      this.sender = Sender.fromConfig(`tcp::addr=${QUESTDB_HOST}:${QUESTDB_PORT};`)
+      await this.sender.connect()
       console.log(`✅ Connected to QuestDB at ${QUESTDB_HOST}:${QUESTDB_PORT}`)
     } catch (error) {
       console.error('❌ Failed to connect to QuestDB:', error)
