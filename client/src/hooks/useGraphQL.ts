@@ -76,28 +76,32 @@ export const useEcho = (options?: MutationHookOptions<{ echo: string }, { messag
 
 export const useCreateUser = (options?: MutationHookOptions<{ createUser: string }, { input: CreateUserInput }>) => {
   return useMutation<{ createUser: string }, { input: CreateUserInput }>(CREATE_USER, {
-    refetchQueries: [GET_USERS, GET_STATS],
+    refetchQueries: ['GetUsers', 'GetStats'],
+    awaitRefetchQueries: true,
     ...options
   })
 }
 
 export const useCreatePost = (options?: MutationHookOptions<{ createPost: string }, { input: CreatePostInput }>) => {
   return useMutation<{ createPost: string }, { input: CreatePostInput }>(CREATE_POST, {
-    refetchQueries: [GET_POSTS, GET_POSTS_WITH_COMMENTS, GET_STATS],
+    refetchQueries: ['GetPosts', 'GetPostsWithComments', 'GetStats'],
+    awaitRefetchQueries: true,
     ...options
   })
 }
 
 export const useCreateComment = (options?: MutationHookOptions<{ createComment: string }, { input: CreateCommentInput }>) => {
   return useMutation<{ createComment: string }, { input: CreateCommentInput }>(CREATE_COMMENT, {
-    refetchQueries: [GET_POSTS_WITH_COMMENTS, GET_STATS],
+    refetchQueries: ['GetPostsWithComments', 'GetStats'],
+    awaitRefetchQueries: true,
     ...options
   })
 }
 
 export const useSeedDatabase = (options?: MutationHookOptions<{ seedDatabase: string }>) => {
   return useMutation<{ seedDatabase: string }>(SEED_DATABASE, {
-    refetchQueries: [GET_USERS, GET_POSTS, GET_POSTS_WITH_COMMENTS, GET_STATS],
+    refetchQueries: ['GetUsers', 'GetStats'],
+    awaitRefetchQueries: true,
     ...options
   })
 }

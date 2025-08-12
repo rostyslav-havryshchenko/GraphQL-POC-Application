@@ -130,47 +130,58 @@ class QuestDBClient {
     console.log('🌱 Seeding database with sample data...')
 
     try {
-      // Insert sample users
+      // Insert sample users (row numbers will be 1, 2, 3)
       await this.insertUser({ name: 'John Doe', email: 'john@example.com' })
+      // Small delay to ensure different timestamps
+      await new Promise(resolve => setTimeout(resolve, 10))
+      
       await this.insertUser({ name: 'Jane Smith', email: 'jane@example.com' })
+      await new Promise(resolve => setTimeout(resolve, 10))
+      
       await this.insertUser({ name: 'Bob Wilson', email: 'bob@example.com' })
+      await new Promise(resolve => setTimeout(resolve, 10))
 
-      // Insert sample posts
+      // Insert sample posts (row numbers will be 1, 2, 3)
       await this.insertPost({
         title: 'Getting Started with GraphQL',
         content: 'GraphQL is a powerful query language for APIs...',
-        author_id: 1
+        author_id: 1  // John Doe
       })
+      await new Promise(resolve => setTimeout(resolve, 10))
 
       await this.insertPost({
         title: 'QuestDB Time Series Database',
         content: 'QuestDB is optimized for time-series data...',
-        author_id: 2
+        author_id: 2  // Jane Smith
       })
+      await new Promise(resolve => setTimeout(resolve, 10))
 
       await this.insertPost({
         title: 'TypeScript Best Practices',
         content: 'Here are some TypeScript tips and tricks...',
-        author_id: 1
+        author_id: 1  // John Doe
       })
+      await new Promise(resolve => setTimeout(resolve, 10))
 
       // Insert sample comments
       await this.insertComment({
         content: 'Great introduction to GraphQL!',
-        post_id: 1,
-        author_id: 2
+        post_id: 1,  // Getting Started with GraphQL
+        author_id: 2 // Jane Smith
       })
+      await new Promise(resolve => setTimeout(resolve, 10))
 
       await this.insertComment({
         content: 'Very helpful, thanks for sharing.',
-        post_id: 1,
-        author_id: 3
+        post_id: 1,  // Getting Started with GraphQL
+        author_id: 3 // Bob Wilson
       })
+      await new Promise(resolve => setTimeout(resolve, 10))
 
       await this.insertComment({
         content: 'QuestDB performance is impressive.',
-        post_id: 2,
-        author_id: 1
+        post_id: 2,  // QuestDB Time Series Database
+        author_id: 1 // John Doe
       })
 
       console.log('✅ Database seeded successfully!')

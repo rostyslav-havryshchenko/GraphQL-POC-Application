@@ -26,7 +26,7 @@ export async function initializeDatabase(): Promise<void> {
     
     if (stats.users === 0 && stats.posts === 0 && stats.comments === 0) {
       console.log('🌱 Database is empty, seeding with sample data...')
-      await questDB.seedDatabase()
+      await questDBHttp.seedDatabase()
       console.log('✅ Database seeded successfully!')
     } else {
       console.log('📊 Database already contains data:', stats)

@@ -125,35 +125,11 @@ class QuestDBHttpClient {
     }
   }
 
-  // Get user by ID
+  // Get user by ID (using row position)
   async getUserById(id: number): Promise<User | null> {
     try {
-      const result = await this.executeQuery(`
-        SELECT 
-          ${id} as id,
-          name,
-          email,
-          created_at
-        FROM users 
-        ORDER BY created_at 
-        LIMIT ${id}, 1
-      `)
-
-      if (result.dataset.length === 0) {
-        return null
-      }
-
-      const row = result.dataset[0]
-      if (!row) {
-        return null
-      }
-      
-      return {
-        id: row[0],
-        name: row[1],
-        email: row[2],
-        created_at: row[3]
-      }
+      const users = await this.getUsers()
+      return users.find(user => user.id === id) || null
     } catch (error) {
       console.error('❌ Failed to fetch user by ID:', error)
       return null
@@ -264,6 +240,97 @@ class QuestDBHttpClient {
     } catch (error) {
       console.error('❌ Failed to fetch stats:', error)
       return { users: 0, posts: 0, comments: 0 }
+    }
+  }
+
+  // Seed database with sample data using HTTP API
+  async seedDatabase(): Promise<void> {
+    console.log('🌱 Seeding database with sample data via HTTP API...')
+
+    try {
+      const now = new Date().toISOString()
+      const timestamps = [
+        new Date(Date.now() - 3000).toISOString(), // 3 seconds ago
+        new Date(Date.now() - 2000).toISOString(), // 2 seconds ago
+        new Date(Date.now() - 1000).toISOString(), // 1 second ago
+      ]
+
+      // Insert users
+      await this.executeQuery(`
+        INSERT INTO users (name, email, created_at) VALUES 
+        ('John Doe', 'john@example.com', '${timestamps[0]}'),
+        ('Jane Smith', 'jane@example.com', '${timestamps[1]}'),
+        ('Bob Wilson', 'bob@example.com', '${timestamps[2]}')
+      `)
+      console.log('📝 Users inserted successfully')
+
+      // Insert posts
+      await this.executeQuery(`
+        INSERT INTO posts (title, content, author_id, created_at, updated_at) VALUES 
+        ('Getting Started with GraphQL', 'GraphQL is a powerful query language for APIs...', 1, '${timestamps[0]}', '${timestamps[0]}'),
+        ('QuestDB Time Series Database', 'QuestDB is optimized for time-series data...', 2, '${timestamps[1]}', '${timestamps[1]}'),
+        ('TypeScript Best Practices', 'Here are some TypeScript tips and tricks...', 1, '${timestamps[2]}', '${timestamps[2]}')
+      `)
+      console.log('📝 Posts inserted successfully')
+
+      // Insert comments  
+      await this.executeQuery(`
+        INSERT INTO comments (content, post_id, author_id, created_at) VALUES 
+        ('Great introduction to GraphQL!', 1, 2, '${timestamps[0]}'),
+        ('Very helpful, thanks for sharing.', 1, 3, '${timestamps[1]}'),
+        ('QuestDB performance is impressive.', 2, 1, '${timestamps[2]}')
+      `)
+      console.log('📝 Comments inserted successfully')
+
+      console.log('✅ Database seeded successfully!')
+    } catch (error) {
+      console.error('❌ Failed to seed database:', error)
+      throw error
+    }
+  }
+
+  // Insert a new user via HTTP API
+  async insertUser(user: { name: string; email: string }): Promise<void> {
+    try {
+      const now = new Date().toISOString()
+      await this.executeQuery(`
+        INSERT INTO users (name, email, created_at) VALUES 
+        ('${user.name.replace(/'/g, "''")}', '${user.email.replace(/'/g, "''")}', '${now}')
+      `)
+      console.log(`📝 User inserted via HTTP: ${user.name}`)
+    } catch (error) {
+      console.error('❌ Failed to insert user via HTTP:', error)
+      throw error
+    }
+  }
+
+  // Insert a new post via HTTP API
+  async insertPost(post: { title: string; content: string; author_id: number }): Promise<void> {
+    try {
+      const now = new Date().toISOString()
+      await this.executeQuery(`
+        INSERT INTO posts (title, content, author_id, created_at, updated_at) VALUES 
+        ('${post.title.replace(/'/g, "''")}', '${post.content.replace(/'/g, "''")}', ${post.author_id}, '${now}', '${now}')
+      `)
+      console.log(`📝 Post inserted via HTTP: ${post.title}`)
+    } catch (error) {
+      console.error('❌ Failed to insert post via HTTP:', error)
+      throw error
+    }
+  }
+
+  // Insert a new comment via HTTP API
+  async insertComment(comment: { content: string; post_id: number; author_id: number }): Promise<void> {
+    try {
+      const now = new Date().toISOString()
+      await this.executeQuery(`
+        INSERT INTO comments (content, post_id, author_id, created_at) VALUES 
+        ('${comment.content.replace(/'/g, "''")}', ${comment.post_id}, ${comment.author_id}, '${now}')
+      `)
+      console.log(`📝 Comment inserted via HTTP for post ${comment.post_id}`)
+    } catch (error) {
+      console.error('❌ Failed to insert comment via HTTP:', error)
+      throw error
     }
   }
 }

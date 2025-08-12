@@ -129,7 +129,7 @@ export const resolvers = {
           throw new ValidationError('Invalid email format')
         }
 
-        await questDB.insertUser({
+        await questDBHttp.insertUser({
           name: args.input.name.trim(),
           email: args.input.email.trim().toLowerCase()
         })
@@ -153,7 +153,7 @@ export const resolvers = {
         validateStringLength(args.input.title, 'title', 5, 200)
         validateStringLength(args.input.content, 'content', 10, 5000)
 
-        await questDB.insertPost({
+        await questDBHttp.insertPost({
           title: args.input.title.trim(),
           content: args.input.content.trim(),
           author_id: args.input.authorId
@@ -177,7 +177,7 @@ export const resolvers = {
         validatePositiveInteger(args.input.authorId, 'authorId')
         validateStringLength(args.input.content, 'content', 3, 1000)
 
-        await questDB.insertComment({
+        await questDBHttp.insertComment({
           content: args.input.content.trim(),
           post_id: args.input.postId,
           author_id: args.input.authorId
@@ -195,7 +195,7 @@ export const resolvers = {
     // Seed database mutation
     seedDatabase: async (): Promise<string> => {
       try {
-        await questDB.seedDatabase()
+        await questDBHttp.seedDatabase()
         return 'Database seeded successfully'
       } catch (error) {
         console.error('Failed to seed database:', error)
