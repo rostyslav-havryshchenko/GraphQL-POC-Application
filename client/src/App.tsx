@@ -1,12 +1,9 @@
-import { Layout, Typography, Space } from 'antd'
-import { DatabaseOutlined, ApiOutlined } from '@ant-design/icons'
+import { Layout, Typography } from 'antd'
 import { ConnectionStatus } from './components/ConnectionStatus'
 import { DatabaseStats } from './components/DatabaseStats'
 import { GraphQLPlayground } from './components/GraphQLPlayground'
-import './App.css'
-
 const { Header, Content } = Layout
-const { Title, Text } = Typography
+const { Text } = Typography
 
 function App() {
   return (
@@ -16,12 +13,6 @@ function App() {
         alignItems: 'center', 
         background: '#001529' 
       }}>
-        <Title level={3} style={{ color: 'white', margin: 0 }}>
-          <Space>
-            <ApiOutlined />
-            GraphQL POC
-          </Space>
-        </Title>
       </Header>
       
       <Content style={{ padding: '24px 50px', background: '#f0f2f5' }}>
@@ -35,13 +26,6 @@ function App() {
             borderRadius: '8px',
             marginBottom: '24px'
           }}>
-            <Title level={1}>
-              <Space>
-                <DatabaseOutlined />
-                GraphQL + QuestDB POC
-              </Space>
-            </Title>
-            
             <Text>
               GraphQL proof-of-concept application built with:
             </Text>
@@ -49,7 +33,7 @@ function App() {
             <ul style={{ marginTop: '16px', marginBottom: '24px' }}>
               <li><strong>Frontend:</strong> React + TypeScript + Ant Design</li>
               <li><strong>Backend:</strong> Node.js + GraphQL Yoga + TypeScript</li>
-              <li><strong>Database:</strong> QuestDB (Time-series database)</li>
+              <li><strong>Database:</strong> QuestDB</li>
               <li><strong>GraphQL Client:</strong> Apollo Client</li>
             </ul>
           </div>

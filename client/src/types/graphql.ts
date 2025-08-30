@@ -33,7 +33,7 @@ export interface Stats {
   comments: number
 }
 
-// Input types for mutations
+// Input utils for mutations
 export interface CreateUserInput {
   name: string
   email: string

@@ -248,7 +248,6 @@ class QuestDBHttpClient {
     console.log('🌱 Seeding database with sample data via HTTP API...')
 
     try {
-      const now = new Date().toISOString()
       const timestamps = [
         new Date(Date.now() - 3000).toISOString(), // 3 seconds ago
         new Date(Date.now() - 2000).toISOString(), // 2 seconds ago

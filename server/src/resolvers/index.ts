@@ -6,9 +6,9 @@ import {
   validateStringLength,
   validatePositiveInteger,
   ValidationError
-} from '../types/graphql'
+} from '../utils/validators'
 
-// Input types for mutations
+// Input utils for mutations
 interface CreateUserInput {
   name: string
   email: string
@@ -30,7 +30,7 @@ interface CreateCommentInput {
 export const resolvers = {
   Query: {
     // Basic info queries
-    hello: () => 'Hello from GraphQL Yoga with QuestDB!',
+    hello: () => 'Hello!',
     version: () => '1.0.0',
     
     // Database stats
