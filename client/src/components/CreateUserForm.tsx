@@ -26,7 +26,7 @@ export const CreateUserForm = () => {
         }
       })
     } catch (error) {
-      // Error is handled by onError callback
+      console.error(error);
     }
   }
 

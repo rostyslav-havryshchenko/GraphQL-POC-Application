@@ -11,6 +11,7 @@ export const formatDate = (dateString: string): string => {
       minute: '2-digit'
     })
   } catch (error) {
+    console.error(error);
     return dateString
   }
 }
@@ -36,6 +37,7 @@ export const formatRelativeTime = (dateString: string): string => {
       return formatDate(dateString)
     }
   } catch (error) {
+    console.error(error);
     return dateString
   }
 }
@@ -47,16 +49,6 @@ export const truncateText = (text: string, maxLength: number = 100): string => {
   return text.substring(0, maxLength) + '...'
 }
 
-export const capitalizeFirst = (str: string): string => {
-  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
-}
-
-export const formatUserName = (name: string): string => {
-  return name
-    .split(' ')
-    .map(word => capitalizeFirst(word))
-    .join(' ')
-}
 
 export const getInitials = (name: string): string => {
   return name

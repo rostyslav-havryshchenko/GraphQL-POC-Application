@@ -32,7 +32,7 @@ export const CreatePostForm = () => {
         }
       })
     } catch (error) {
-      // Error is handled by onError callback
+      console.error(error);
     }
   }
 

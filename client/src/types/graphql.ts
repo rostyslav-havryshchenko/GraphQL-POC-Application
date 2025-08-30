@@ -1,5 +1,4 @@
-// GraphQL Types - Generated from server schema
-
+// GraphQL Types
 export interface User {
   id: number
   name: string
@@ -52,21 +51,3 @@ export interface CreateCommentInput {
   authorId: number
 }
 
-export interface UpdatePostInput {
-  id: number
-  title?: string
-  content?: string
-}
-
-// API Response types
-export interface ApiResponse<T> {
-  data?: T
-  loading: boolean
-  error?: Error | null
-}
-
-// Common component props
-export interface ComponentProps {
-  className?: string
-  style?: React.CSSProperties
-}

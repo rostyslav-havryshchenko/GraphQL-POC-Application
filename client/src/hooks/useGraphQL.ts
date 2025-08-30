@@ -4,14 +4,10 @@ import {
   GET_HELLO,
   GET_STATS,
   GET_USERS,
-  GET_USER,
   GET_POSTS,
-  GET_POSTS_WITH_COMMENTS,
-  GET_POSTS_BY_AUTHOR,
-  GET_COMMENTS_BY_POST
+  GET_POSTS_WITH_COMMENTS
 } from '../graphql/queries'
 import {
-  ECHO,
   CREATE_USER,
   CREATE_POST,
   CREATE_COMMENT,
@@ -19,8 +15,7 @@ import {
 } from '../graphql/mutations'
 import type { 
   User, 
-  Post, 
-  Comment, 
+  Post,
   Stats, 
   CreateUserInput, 
   CreatePostInput, 
@@ -40,13 +35,6 @@ export const useUsers = (options?: QueryHookOptions) => {
   return useQuery<{ users: User[] }>(GET_USERS, options)
 }
 
-export const useUser = (id: number, options?: QueryHookOptions) => {
-  return useQuery<{ user: User }>(GET_USER, {
-    variables: { id },
-    ...options
-  })
-}
-
 export const usePosts = (options?: QueryHookOptions) => {
   return useQuery<{ posts: Post[] }>(GET_POSTS, options)
 }
@@ -55,25 +43,7 @@ export const usePostsWithComments = (options?: QueryHookOptions) => {
   return useQuery<{ posts: Post[] }>(GET_POSTS_WITH_COMMENTS, options)
 }
 
-export const usePostsByAuthor = (authorId: number, options?: QueryHookOptions) => {
-  return useQuery<{ postsByAuthor: Post[] }>(GET_POSTS_BY_AUTHOR, {
-    variables: { authorId },
-    ...options
-  })
-}
-
-export const useCommentsByPost = (postId: number, options?: QueryHookOptions) => {
-  return useQuery<{ commentsByPost: Comment[] }>(GET_COMMENTS_BY_POST, {
-    variables: { postId },
-    ...options
-  })
-}
-
 // Mutation hooks
-export const useEcho = (options?: MutationHookOptions<{ echo: string }, { message: string }>) => {
-  return useMutation<{ echo: string }, { message: string }>(ECHO, options)
-}
-
 export const useCreateUser = (options?: MutationHookOptions<{ createUser: string }, { input: CreateUserInput }>) => {
   return useMutation<{ createUser: string }, { input: CreateUserInput }>(CREATE_USER, {
     refetchQueries: ['GetUsers', 'GetStats'],

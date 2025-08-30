@@ -1,9 +1,3 @@
-// GraphQL Context type
-export interface GraphQLContext {
-  // Add any context properties here
-  // e.g., user authentication, request info, etc.
-}
-
 // Input validation helpers
 export class ValidationError extends Error {
   constructor(message: string) {

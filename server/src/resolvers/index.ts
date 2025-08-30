@@ -26,25 +26,6 @@ interface CreateCommentInput {
   authorId: number
 }
 
-interface UpdatePostInput {
-  id: number
-  title?: string
-  content?: string
-}
-
-// Extended types with relationships
-interface UserWithPosts extends User {
-  posts: Post[]
-}
-
-interface PostWithAuthorAndComments extends Post {
-  author: User
-  comments: Comment[]
-}
-
-interface CommentWithAuthor extends Comment {
-  author: User
-}
 
 export const resolvers = {
   Query: {

@@ -5,7 +5,7 @@ import { DatabaseStats } from './components/DatabaseStats'
 import { GraphQLPlayground } from './components/GraphQLPlayground'
 import './App.css'
 
-const { Header, Content, Footer } = Layout
+const { Header, Content } = Layout
 const { Title, Text } = Typography
 
 function App() {
@@ -43,7 +43,7 @@ function App() {
             </Title>
             
             <Text>
-              Welcome to the GraphQL proof-of-concept application built with:
+              GraphQL proof-of-concept application built with:
             </Text>
             
             <ul style={{ marginTop: '16px', marginBottom: '24px' }}>
@@ -62,24 +62,8 @@ function App() {
 
           {/* GraphQL Operations Playground */}
           <GraphQLPlayground />
-
-          <div style={{ 
-            background: 'white', 
-            padding: '24px', 
-            borderRadius: '8px',
-            textAlign: 'center'
-          }}>
-            <Text type="secondary">
-              This application demonstrates GraphQL queries and mutations with real-time data from QuestDB.
-              Try creating users, posts, and comments to see the GraphQL operations in action!
-            </Text>
-          </div>
         </div>
       </Content>
-      
-      <Footer style={{ textAlign: 'center' }}>
-        GraphQL POC ©{new Date().getFullYear()} - Built with React, TypeScript & Ant Design
-      </Footer>
     </Layout>
   )
 }

@@ -1,12 +1,5 @@
 import { gql } from '@apollo/client'
 
-// Basic mutations
-export const ECHO = gql`
-  mutation Echo($message: String!) {
-    echo(message: $message)
-  }
-`
-
 // User mutations
 export const CREATE_USER = gql`
   mutation CreateUser($input: CreateUserInput!) {
