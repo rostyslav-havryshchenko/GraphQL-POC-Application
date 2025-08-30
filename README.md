@@ -2,7 +2,7 @@
 
 ## 🚀 Quick Start
 
-**Option 1 - Full Setup:**
+**Setup:**
 ```bash
 # 1. Install dependencies
 npm install
@@ -17,7 +17,7 @@ cd server && npm run setup-db && cd ..
 npm run dev
 ```
 
-## 🏗️ Tech Stack
+## Tech Stack
 
 ### Backend
 - **Node.js** + **TypeScript** - Runtime and type safety
@@ -31,7 +31,7 @@ npm run dev
 - **Ant Design** - Professional UI component library
 - **Apollo Client** - GraphQL client with intelligent caching
 
-## 🌐 Access Points
+## Access Points
 
 After starting the application:
 
@@ -40,7 +40,7 @@ After starting the application:
 - **QuestDB Console**: http://localhost:9009
 - **QuestDB API**: http://localhost:9000
 
-## 🚦 Development Commands
+## Development Commands
 
 ```bash
 # Root workspace
